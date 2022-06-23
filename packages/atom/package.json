@@ -1,0 +1,17 @@
+{
+  "name": "@fostars/atom",
+  "description": "css原子化共用抽离",
+  "scripts": {
+    "build": "fe-cli build"
+  },
+  "author": {
+    "name": "liuxsen",
+    "email": "wyliuxsen@163.com",
+    "url": "http://git.fostars.com/jianhui"
+  },
+  "devDependencies": {
+    "@fostars/cli": "workspace: *",
+    "autoprefixer": "^10.4.7",
+    "postcss-nested": "^5.0.6"
+  }
+}

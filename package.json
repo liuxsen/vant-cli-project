@@ -1,0 +1,33 @@
+{
+  "name": "fe-awesome",
+  "scripts": {
+    "dev": "vite",
+    "build": "rollup --config scripts/rollup.config.js",
+    "prepare": "husky install",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@fostars/eslint-config": "workspace: *",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "postcss": "^8.4.14",
+    "rollup-plugin-postcss": "^4.0.2",
+    "@types/jest": "^28.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.16.0",
+    "eslint-config-standard": "^17.0.0",
+    "jest": "^28.1.0",
+    "less": "^4.1.2",
+    "rollup": "^2.75.5",
+    "ts-jest": "^28.0.4",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.3",
+    "vite": "^2.9.9"
+  },
+  "dependencies": {
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "vue": "2"
+  }
+}

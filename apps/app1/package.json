@@ -1,0 +1,13 @@
+{
+  "name": "app1",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@fostars/h-mui": "workspace: *",
+    "vite": "^2.9.12",
+    "vue": "2",
+    "vite-plugin-vue2": "^2.0.1",
+    "vue-template-compiler": "^2.6.14"
+  }
+}

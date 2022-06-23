@@ -1,0 +1,18 @@
+{
+  "name": "@fostars/editor",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "vite": "^2.9.12",
+    "vue": "2",
+    "vite-plugin-vue2": "^2.0.1",
+    "vue-template-compiler": "^2.6.14",
+    "@ckeditor/ckeditor5-build-classic": "^34.1.0",
+    "@ckeditor/ckeditor5-build-inline": "^34.1.0",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^34.1.0",
+    "@ckeditor/ckeditor5-build-balloon": "^34.1.0",
+    "@ckeditor/ckeditor5-build-balloon-block": "^34.1.0"
+  }
+}

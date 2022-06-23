@@ -1,0 +1,53 @@
+{
+  "name": "@fostars/cli",
+  "version": "1.0.0",
+  "bin": {
+    "fe-cli": "./bin.js"
+  },
+  "main": "lib/index.js",
+  "typings": "./lib/index.d.ts",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "bin.js",
+    "lib"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "rimraf ./lib && tsc",
+    "build2": "fe-cli build"
+  },
+  "devDependencies": {
+    "@fostars/cli": "workspace:^1.0.0",
+    "@fostars/eslint-config": "workspace: *",
+    "@types/fs-extra": "^9.0.13",
+    "@types/hash-sum": "^1.0.0",
+    "@types/less": "^3.0.3",
+    "vite-plugin-md": "^0.17.2"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^1.3.10",
+    "@vue/compiler-sfc": "^3.2.37",
+    "@vue/component-compiler-utils": "^3.3.0",
+    "chalk": "^5.0.1",
+    "commander": "^9.3.0",
+    "consola": "^2.15.3",
+    "esbuild": "^0.14.43",
+    "fast-glob": "^3.2.11",
+    "fs-extra": "^10.1.0",
+    "hash-sum": "^2.0.0",
+    "less": "^4.1.2",
+    "ora": "^5",
+    "postcss": "^8.4.14",
+    "postcss-load-config": "^4.0.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.52.3",
+    "typescript": "^4.7.3",
+    "vite-plugin-inspect": "^0.5.0",
+    "vite-plugin-vue2": "^2.0.1",
+    "vue": "2",
+    "vue-router": "3",
+    "vue-template-compiler": "^2.6.14"
+  }
+}
