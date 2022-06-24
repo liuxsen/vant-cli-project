@@ -5,8 +5,20 @@
     "build": "fe-cli build",
     "release": "fe-cli release && pnpm publish"
   },
-  "devDependencies": {
+  "module": "./es/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "peerDependencies": {
+    "dayjs": "^1.11.3"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.3",
     "@fostars/cli": "workspace: *"
+  },
+  "devDependencies": {
   },
   "version": "1.0.2"
 }

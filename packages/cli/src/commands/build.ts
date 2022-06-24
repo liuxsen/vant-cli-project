@@ -1,7 +1,8 @@
+import execa from 'execa';
 import { setNodeEnv, isDir, isStyle, isSfc, isScript } from '../common/index'
 import { clean } from './clean'
-import fse from 'fs-extra'
-import { SRC_DIR, ES_DIR, LIB_DIR, getVueVersion } from '../common/constant'
+import fse, { existsSync } from 'fs-extra'
+import { SRC_DIR, ES_DIR, LIB_DIR, getVueVersion, CWD } from '../common/constant'
 import { ora, consola } from '../common/logger'
 import { Format } from 'esbuild'
 import { join, relative } from 'path'
@@ -68,6 +69,10 @@ const buildTypeDeclarations = async () => {
     preCompileDir(ES_DIR),
     preCompileDir(LIB_DIR)
   ])
+  const tsConfig = join(CWD, 'tsconfig.declaration.json')
+  if(existsSync(tsConfig)){
+    await execa('tsc', ['-p', tsConfig])
+  }
 }
 
 const buildESMOutputs = async () => {
@@ -80,7 +85,10 @@ const buildCJSOutputs = async () => {
 const buildPackageScriptEntry = async () => {
   const esEntryFile = join(ES_DIR, 'index.js')
   const libEntryFile = join(LIB_DIR, 'index.js')
-
+  const hasIndex = existsSync(join(SRC_DIR, 'index.ts'))
+  if(hasIndex){
+    return;
+  }
   genPackageEntry({
     outputPath: esEntryFile,
     pathResolver: (path: string) => `./${relative(SRC_DIR, path)}`

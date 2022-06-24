@@ -1,2 +1,3 @@
 export * from './download'
-export default {}
+export * from './local-manager'
+console.log('aa')

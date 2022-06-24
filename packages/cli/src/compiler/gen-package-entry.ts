@@ -1,4 +1,4 @@
-import { outputFileSync } from 'fs-extra'
+import { outputFileSync, existsSync } from 'fs-extra';
 import { getComponents, normalizePath, pascalize } from '../common'
 import { getPckageJSON, SRC_DIR } from '../common/constant'
 import { join } from 'path'

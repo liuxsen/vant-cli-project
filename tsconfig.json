@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true
-  },
-  "includes": [
-    "packages",
-    "apps"
-  ],
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "strict": true,
+    "target": "ES2015",
+    "module": "CommonJS",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "lib": ["esnext", "dom"]
+  }
 }

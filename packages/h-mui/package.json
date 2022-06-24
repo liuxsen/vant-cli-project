@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "vue": "^2",
-    "vue-template-compiler": "^2"
+    "vue-template-compiler": "^2",
+    "@fostars/utils": "workspace: *"
   }
 }

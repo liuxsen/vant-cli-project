@@ -1,4 +1,5 @@
 import esbuild, { type Format } from 'esbuild'
+import { transform } from "@babel/core";
 import { outputFileSync, readFileSync } from 'fs-extra'
 import { replaceCssImportExt } from '../common/css'
 import { replaceScriptImportExt } from './get-deps'
@@ -17,7 +18,13 @@ export const compileScript = async (filePath: string, format: Format): Promise<v
 
   const esbuildResult = await esbuild.transform(code, {
     loader: 'ts',
-    target: 'es2016',
+    target: [
+      // 'ie9',
+      // 'ios10',
+      // "node12",
+      "es2016"
+    ],
+    drop: ['console'],
     format
   })
 
