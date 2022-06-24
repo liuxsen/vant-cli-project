@@ -1,6 +1,12 @@
 {
   "name": "@fostars/eslint-config",
   "main": "index.js",
+  "exports": {
+    "./base": "./base/index.js",
+    "./vue": "./vue/index.js",
+    "./react": "./react/index.js",
+    "./typescript": "./typescript/index.js"
+  },
   "peerDependencies": {
     "eslint": "^8.16.0",
     "eslint-config-standard": "^17.0.0",

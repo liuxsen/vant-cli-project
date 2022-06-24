@@ -1,6 +1,6 @@
 {
   "name": "@fostars/h-mui",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "移动端ui库封装",
   "author": {
     "name": "liuxsen",
@@ -18,7 +18,15 @@
   ],
   "scripts": {
     "build": "fe-cli build",
-    "dev": "fe-cli dev"
+    "dev": "fe-cli dev",
+    "release": "fe-cli release"
+  },
+  "npm": {
+    "publish": false,
+    "skipChecks": true
+  },
+  "publishConfig": {
+    "registry": "https://npm.fostars.com"
   },
   "devDependencies": {
     "@fostars/cli": "workspace: *",
@@ -27,10 +35,6 @@
   },
   "dependencies": {
     "vue": "^2",
-    "@vant/cli": "2.11.7",
-    "vue-template-compiler": "^2",
-    "jest": "^26",
-    "ts-jest": "^26",
-    "chalk": "^5.0.1"
+    "vue-template-compiler": "^2"
   }
 }

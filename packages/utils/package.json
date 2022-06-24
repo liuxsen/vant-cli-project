@@ -2,9 +2,11 @@
   "name": "@fostars/utils",
   "description": "工具方法集成",
   "scripts": {
-    "build": "fe-cli build"
+    "build": "fe-cli build",
+    "release": "fe-cli release && pnpm publish"
   },
   "devDependencies": {
     "@fostars/cli": "workspace: *"
-  }
+  },
+  "version": "1.0.2"
 }
