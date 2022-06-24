@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "vite",
     "build": "rollup --config scripts/rollup.config.js",
+    "prepare": "husky install",
     "test": "jest"
   },
   "devDependencies": {

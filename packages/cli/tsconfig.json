@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./lib",
     "target": "ES2016",
-    "module": "CommonJS",
+    "module": "commonjs",
     "declaration": true,
     "moduleResolution": "Node",
     "esModuleInterop": true,
