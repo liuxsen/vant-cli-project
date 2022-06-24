@@ -2,7 +2,7 @@ import { InlineConfig, PluginOption } from 'vite'
 import { SITE_SRC_DIR } from '../common/constant'
 import { createVuePlugin } from 'vite-plugin-vue2'
 import vitePluginJsx from '@vitejs/plugin-vue-jsx'
-import Markdown from 'vite-plugin-md'
+// import Markdown from 'vite-plugin-md'
 import Inspect from 'vite-plugin-inspect'
 import { genSiteDeskTopShared } from '../compiler/gen-site-desktop-shared'
 import { genSiteDemoShared } from '../compiler/gen-site-demo-shared'
@@ -45,7 +45,7 @@ export const getViteConfigForSiteDev = (): InlineConfig => {
       createVuePlugin({
         include: [/\.vue$/, /\.md$/]
       }),
-      Markdown()
+      // Markdown()
     ],
     server: {
       host: '0.0.0.0'

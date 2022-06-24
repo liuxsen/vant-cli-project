@@ -4,5 +4,6 @@ import chalk from 'chalk'
 
 export {
   ora,
-  consola
+  consola,
+  chalk
 }
