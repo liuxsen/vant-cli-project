@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "dayjs": "^1.11.3",
-    "@fostars/cli": "workspace: *"
+    "@fostars/cli": "workspace: *",
+    "core-js": "3"
   },
-  "devDependencies": {
-  },
-  "version": "1.0.2"
+  "devDependencies": {},
+  "version": "1.0.4"
 }

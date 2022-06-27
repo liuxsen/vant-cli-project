@@ -1,4 +1,4 @@
-import fse, { existsSync } from 'fs-extra'
+import fse from 'fs-extra'
 import { sep, join } from 'path'
 import { CWD, ROOT, SRC_DIR } from './constant.js'
 

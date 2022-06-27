@@ -1,11 +1,34 @@
 import dayjs, { ManipulateType } from 'dayjs'
+
+interface InputParams {
+  appName: string, productName: string, name: string
+}
 export class LocalManager {
+  appName: string
   productName: string
   name: string
   timeout: string // 时间戳
-  constructor(productName: string, name: string){
+  constructor(
+    {appName, productName, name}: InputParams){
     this.productName = productName
     this.name = name
+    this.timeout = ''
+    this.appName = appName
+    if(!appName && !productName || !name){
+      console.warn('初始化参数不完整, 请检查！')
+    }
+  }
+  getKeyVal(){
+    const localKey = [this.appName, this.productName, this.name].join('$')
+    const timeoutKey = [this.appName, this.productName, this.name, 'timeout'].join('$')
+    const localVal = localStorage.getItem(localKey) || ''
+    const timeoutVal = localStorage.getItem(timeoutKey) || ''
+    return {
+      localKey,
+      timeoutKey,
+      localVal,
+      timeoutVal
+    }
   }
   /**
    * 设置local
@@ -13,26 +36,35 @@ export class LocalManager {
    * @param timeOut 过期时间
    */
   set(val: string, timeOutVal: number, timeoutUnit: ManipulateType){
+    const {localKey, timeoutKey} = this.getKeyVal()
     const timeout = dayjs().add(timeOutVal, timeoutUnit).format('YYYY-MM-DD HH:mm:ss')
     this.timeout = timeout
-    const key = [this.productName, this.name].join('$')
-    localStorage.setItem(key, val)
-    const timeoutKey = [this.productName, this.name, 'timeout'].join('$')
+    localStorage.setItem(localKey, val)
     localStorage.setItem(timeoutKey, this.timeout)
   }
+  /**
+   * 获取保存的值
+   * @returns string
+   */
   get(){
-    const localKey = [this.productName, this.name].join('$')
-    const localVal = localStorage.getItem(localKey)
-    const timeoutKey = [this.productName, this.name, 'timeout'].join('$')
-    const timeoutVal = localStorage.get(timeoutKey)
-    const isOld = Date.now() - new Date(timeoutVal).getTime() < 0
+    const { localVal, timeoutVal } = this.getKeyVal()
+    if(!timeoutVal){
+      return localVal
+    }
+    const isOld = Date.now() - new Date(timeoutVal).getTime() > 0
     if(isOld){
-      // remove
-      localStorage.removeItem(localKey)
-      localStorage.removeItem(timeoutKey)
+      this.remove()
       return ''
     } else {
       return localVal
     }
+  }
+  /**
+   * 删除保存的值
+   */
+  remove(){
+    const { localKey, timeoutKey } = this.getKeyVal()
+    localStorage.removeItem(localKey)
+    localStorage.removeItem(timeoutKey)
   }
 }
