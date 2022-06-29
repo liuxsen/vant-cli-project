@@ -26,6 +26,10 @@
     "@types/less": "^3.0.3"
   },
   "dependencies": {
+    "vite-plugin-md": "^0.18.1",
+    "happy-dom": "^5.3.2",
+    "markdown-it": "^13.0.1",
+    "prismjs": "^1.28.0",
     "@fostars/cli": "workspace: *",
     "@babel/core": "^7.18.5",
     "@babel/plugin-transform-typescript": "^7.18.4",

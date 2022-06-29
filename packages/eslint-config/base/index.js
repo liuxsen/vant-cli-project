@@ -7,13 +7,18 @@ module.exports = {
   },
   extends: [
     'standard',
-    'eslint:recommended',
-    // 'plugin:vue/recommended',
-    // 'plugin:@typescript-eslint/recommended'
+    'eslint:recommended'
   ],
   rules: {
-    '@typescript-eslint/ban-ts-comment': 0,
-    '@typescript-eslint/no-non-null-assertion': 0,
-    '@typescript-eslint/no-explicit-any': 0
+    'object-curly-newline': ['error', {
+      ObjectExpression: 'always',
+      ObjectPattern: {
+        multiline: true
+      },
+      ImportDeclaration: 'never',
+      ExportDeclaration: {
+        multiline: true, minProperties: 3
+      }
+    }]
   }
 }

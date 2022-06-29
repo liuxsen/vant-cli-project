@@ -22,7 +22,7 @@ const resolveDocuments = (components: string[]): DocumentItem[] => {
   components.forEach((component) => {
     docs.push({
       name: formatName(component),
-      path: join(SRC_DIR, component, 'READEM.md')
+      path: join(SRC_DIR, component, 'README.md')
     })
   })
   return docs
