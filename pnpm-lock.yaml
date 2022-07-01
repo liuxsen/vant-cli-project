@@ -47,22 +47,6 @@ importers:
       typescript: 4.7.4
       vite: 2.9.12_less@4.1.3
 
-  apps/app1:
-    specifiers:
-      '@fostars/h-mui': 'workspace: *'
-      '@fostars/utils': 'workspace: *'
-      vite: ^2.9.12
-      vite-plugin-vue2: ^2.0.1
-      vue: '2'
-      vue-template-compiler: ^2.6.14
-    dependencies:
-      '@fostars/h-mui': link:../../packages/h-mui
-      '@fostars/utils': link:../../packages/utils
-      vite: 2.9.12_less@4.1.3
-      vite-plugin-vue2: 2.0.1_4ce66f5fc8f5b0f22b77fddbd3702324
-      vue: 2.6.14
-      vue-template-compiler: 2.6.14
-
   packages/atom:
     specifiers:
       '@fostars/cli': 'workspace: *'
@@ -72,6 +56,12 @@ importers:
       '@fostars/cli': link:../cli
       autoprefixer: 10.4.7_postcss@8.4.14
       postcss-nested: 5.0.6_postcss@8.4.14
+
+  packages/bar:
+    specifiers:
+      foo: 'workspace: *'
+    dependencies:
+      foo: link:../foo
 
   packages/cli:
     specifiers:
@@ -171,6 +161,12 @@ importers:
       eslint-plugin-n: 15.2.3_eslint@8.18.0
       eslint-plugin-promise: 6.0.0_eslint@8.18.0
       eslint-plugin-vue: 9.1.1_eslint@8.18.0
+
+  packages/foo:
+    specifiers:
+      bar: 'workspace: *'
+    dependencies:
+      bar: link:../bar
 
   packages/h-mui:
     specifiers:
@@ -7869,6 +7865,7 @@ packages:
       rollup: 2.75.7
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
 
   /vm2/3.9.9:
     resolution: {integrity: sha512-xwTm7NLh/uOjARRBs8/95H0e8fT3Ukw5D/JJWhxMbhKzNh1Nu981jQKvkep9iKYNxzlVrdzD0mlBGkDKZWprlw==}
