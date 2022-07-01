@@ -119,7 +119,7 @@ const tasks = [
   { text: 'BuiBuild Type Declarations', task: buildTypeDeclarations },
   { text: 'Build ESModule Outputs', task: buildESMOutputs },
   { text: 'Build CJSodule Outputs', task: buildCJSOutputs },
-  { text: 'Build Bundled Outputs', task: buildBundledOutputs }
+  // { text: 'Build Bundled Outputs', task: buildBundledOutputs }
 ]
 
 const runBuildTasks = async () => {

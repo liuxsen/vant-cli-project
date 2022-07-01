@@ -1,5 +1,5 @@
 import { readdirSync } from 'fs'
-import { isDev, pascalize } from '../common'
+import { isDev, isDir, pascalize } from '../common'
 import { SRC_DIR } from '../common/constant'
 import { join } from 'path'
 
@@ -19,7 +19,11 @@ type DocumentItem = {
 
 const resolveDocuments = (components: string[]): DocumentItem[] => {
   const docs: DocumentItem[] = []
+
   components.forEach((component) => {
+    const isDirPath = isDir(join(SRC_DIR, component))
+    console.log('===', isDirPath)
+    if(!isDirPath) return
     docs.push({
       name: formatName(component),
       path: join(SRC_DIR, component, 'README.md')

@@ -199,12 +199,12 @@ importers:
       vxe-table: '3'
       xe-utils: ^3.5.0
     dependencies:
+      '@fostars/utils': link:../utils
       element-ui: 2.15.9_vue@2.6.14
       vxe-table: 3.5.9_vue@2.6.14+xe-utils@3.5.4
       xe-utils: 3.5.4
     devDependencies:
       '@fostars/cli': link:../cli
-      '@fostars/utils': link:../utils
       autoprefixer: 10.4.7_postcss@8.4.14
       postcss-nested: 5.0.6_postcss@8.4.14
 

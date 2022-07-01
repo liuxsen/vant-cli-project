@@ -1,5 +1,7 @@
 <template>
-<div :id="id">
+<div class="ck-editor-box">
+  <div :id="id">
+  </div>
 </div>
 </template>
 
@@ -55,35 +57,6 @@ export default {
   },
   methods: {
     async initEditor(){
-      // const toolbars = [
-      //   'insert',
-      //   'alignleft aligncenter alignright alignjustify alignnone blockquote indent outdent italic',
-      //   'fontfamily fontsize forecolor h1 h2 h3 h4 h5 h6 lineheight',
-      //   'link image',
-      //   'redo undo remove',
-      //   'numlist bullist',
-      //   'backcolor  blocks forecolor',
-      //   'selectall copy cut paste pastetext print',
-      //   'removeformat',
-      //   'subscript superscript underline visualaid hr',
-      //   'wordcount',
-      // ]
-      // const plugins = [
-      //   'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'parse',
-      //   'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-      //   'insertdatetime', 'media', 'table', 'editimage', 'wordcount',
-      // ]
-      // await this.$nextTick()
-      // tinymce.init({
-      //   selector: `#${this.id}`,
-      //   toolbar: toolbars.join(' | '),
-      //   language: 'zh-Hans',
-      //   branding: false,
-      //   relative_urls: false,
-      //   // https://stackoverflow.com/questions/17193624/remove-path-in-status-bar-in-tinymce4
-      //   elementpath: false,
-      //   content_css: './reset.css',
-      // })
       let that = this;
       class MyUploadAdapter {
         constructor( loader ) {
@@ -131,13 +104,9 @@ export default {
                     toolbarElement.style.display = 'flex';
                 }
             } );
-            console.log(editor)
             editor.model.document.on('change:data', (e) => {
               const data = editor.getData();
-              console.log(data)
               this.$emit('input', data)
-              // const htmlwirter = editor.engine
-              // console.log(htmlwirter)
             })
             if(this.readonly || this.disabled){
               editor.enableReadOnlyMode('lock-id')
@@ -147,8 +116,8 @@ export default {
             editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
                 return new MyUploadAdapter( loader );
             };
-            const plugin = editor.plugins.get( 'FileRepository' )
-            console.log('plugin', plugin)
+            // const plugin = editor.plugins.get( 'FileRepository' )
+            // console.log('plugin', plugin)
 						return editor;
 					} )
 			});
@@ -172,3 +141,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.ck-editor-box .ck-content {
+  min-height: 250px;
+  max-height: 400px;
+}
+</style>
