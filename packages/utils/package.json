@@ -6,8 +6,10 @@
     "release": "fe-cli release && pnpm publish"
   },
   "module": "./es/index.js",
+  "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
+    "README.md",
     "es",
     "lib"
   ],
@@ -15,10 +17,11 @@
     "dayjs": "^1.11.3"
   },
   "dependencies": {
-    "dayjs": "^1.11.3",
+    "dayjs": "^1.11.3"
+  },
+  "devDependencies": {
     "@fostars/cli": "workspace: *",
     "core-js": "3"
   },
-  "devDependencies": {},
-  "version": "1.0.5"
+  "version": "1.0.12"
 }

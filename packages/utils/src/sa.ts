@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { objToQuery } from "./query"
 // 埋点函数
 // https://fostars.yuque.com/xhkj/wus4l3/fhngm3
@@ -28,60 +29,51 @@ export class Sa {
     }
     const queryStr = objToQuery(queryInfo)
     this.url = `${host}/sa.gif?${queryStr}`
-    // window.sensors = window.sensorsDataAnalytic201505
-  }
-  init(){
-    const options = {
-      server_url: this.url,
-		  is_track_single_page:true, // 单页面配置，默认开启，若页面中有锚点设计，需要将该配置删除，否则触发锚点会多触发 $pageview 事件
-      use_client_time:true,
-      send_type:'beacon',
-      heatmap: {
-        //是否开启点击图，default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭。
-        clickmap:'not_collect',
-        //是否开启触达图，not_collect 表示关闭，不会自动采集 $WebStay 事件，可以设置 'default' 表示开启。
-        scroll_notice_map:'not_collect'
-      }
-    }
-    // this.sensors = window['sensorsDataAnalytic201505'];
-    sensors.init(options)
   }
   autoTrack(){
-    if(typeof(window.sensorsDataAnalytic201505) !== 'undefined'){
-      return false
-    }
-    window.sensorsDataAnalytic201505 = 'sensors'
-    const script = document.createElement('script')
-    script.async = true
-    script.src = sdkUrl
-    script.setAttribute('charset','UTF-8');
-    const firstScript = document.getElementsByTagName('script')[0]
-    if(!window.sensors){
-      window.sensors = (a: any) => {
-        (window.sensors._q = window.sensors._q || []).push(
-          a, arguments
-        )
+    const init = function(para) {
+      var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script',x = null,y = null;
+      if(typeof(w['sensorsDataAnalytic201505']) !== 'undefined') {
+          return false;
+      }
+      w['sensorsDataAnalytic201505'] = n;
+      w[n] = w[n] || function(a) {return function() {(w[n]._q = w[n]._q || []).push([a, arguments]);}};
+      var ifs = ['track','quick','register','use','registerPage','registerOnce','trackSignup', 'trackAbtest', 'setProfile','setOnceProfile','appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify','login','logout','trackLink','clearAllRegister','getAppStatus'];
+      for (var i = 0; i < ifs.length; i++) {
+        w[n][ifs[i]] = w[n].call(null, ifs[i]);
+      }
+      if (!w[n]._t) {
+        x = d.createElement(s), y = d.getElementsByTagName(s)[0];
+        x.async = 1;
+        x.src = p;
+        x.setAttribute('charset','UTF-8');
+        w[n].para = para;
+        y.parentNode.insertBefore(x, y);
       }
     }
-    window.sensors.para = {
+    init({
+      use_client_time:true,
+      send_type:'beacon',
+      show_log: true,
+      sdk_url: sdkUrl,
+      heatmap_url: '',
       name: 'sensors',
       server_url: this.url,
-      sdkUrl,
       heatmap: {}
-    }
-    firstScript.parentNode?.insertBefore(script, firstScript)
+    });
+    sensors.use('PageLeave');
+    sensors.use('PageLoad');
   }
   // 注册公共属性
   registerPage(options: Record<string, string | number>){
     sensors.registerPage(options)
   }
   // 自动全埋点
-  quick(){
+  autoquick(){
     sensors.quick('autoTrack');
   }
-  // 打开页面停留事件
-  listenPageLeave(){
-    sensors.use('PageLeave');
+  quick(quickName: string){
+    sensors.quick(quickName);
   }
   // 设置用户profile
   setProfile(p: Parameters<typeof sensors.setProfile>[0]){
@@ -90,13 +82,6 @@ export class Sa {
   // 注册自定义事件
   registerPlugin(p: object){
     let registerPlugin = sensors.use('RegisterProperties');
-    // {
-    //   events:['pageOpen'],
-    //   properties: {
-    //     radradaI:'',
-    //     radaName:''
-    //   }
-    // }
     registerPlugin.register(p)
   }
   track(eventName: string, p: object){

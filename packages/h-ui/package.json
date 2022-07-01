@@ -1,27 +1,29 @@
 {
   "name": "@fostars/h-ui",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "scripts": {
     "dev": "fe-cli dev",
-    "build": "fe-cli build"
+    "build": "fe-cli build",
+    "release": "fe-cli release && pnpm publish"
   },
   "files": [
     "READEM.md",
     "es",
     "lib"
   ],
-  "type": "module",
   "module": "es/index.js",
   "main": "lib/index.js",
   "unpkg": "lib/HUI.min.js",
   "devDependencies": {
     "@fostars/cli": "workspace: *",
+    "@fostars/utils": "workspace: *",
     "autoprefixer": "^10.4.7",
     "postcss-nested": "^5.0.6"
   },
   "peerDependencies": {
     "vxe-table": "3",
-    "xe-utils": "^3.5.0"
+    "xe-utils": "^3.5.0",
+    "element-ui": "^2.15.9"
   },
   "dependencies": {
     "vxe-table": "3",

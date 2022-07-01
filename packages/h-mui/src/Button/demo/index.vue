@@ -3,14 +3,14 @@
   <Button/>
   <div @click="test1">set local</div>
   <div @click="test2">get local</div>
-  <div @click="testSa">auto track</div>
-  <div @click="testSa1">click to track</div>
+  <button @click="testSa">auto track</button>
+  <button @click="testSa2">auto track2</button>
 </div>
 </template>
 
 <script lang="ts">
 import Button from '../Button.vue'
-import { LocalManager, Sa } from '@fostars/utils'
+import { LocalManager, Sa } from '../../../../utils/src/index'
 const lm = new LocalManager({
   appName: 'h5-pro',
   productName: 'jrb',
@@ -19,7 +19,8 @@ const lm = new LocalManager({
 const sa = new Sa({
   project: 'app_xinghu',
   env: 'test',
-  host: 'http://10.200.10.143:8000/'
+  host: 'https://sa.fostars.com'
+  // '/sa.gif?project=app_xinghu'
 })
 export default {
   components: {
@@ -36,13 +37,12 @@ export default {
     },
     testSa(){
       sa.autoTrack()
-      setTimeout(() => {
-        sa.init()
-        sa.quick()
-      }, 200)
     },
-    testSa1(){
-      
+    testSa2(){
+      sa.track('clickEvent', {
+        name: 'name',
+        customData: '1111111111111111'
+      })
     }
   }
 }
