@@ -1,12 +1,13 @@
 // dom操作
 // insert dom
-export const insertScript = (url: string, onload?: (e: Event) => void) => {
+export const insertScript = (url: string, onload?: (e?: Event) => void) => {
   const scripts = document.getElementsByTagName('script')
   const hasScript = Array.from(scripts).findIndex(script => {
     const src = script.getAttribute('src')
     return src === url
   }) > -1
   if(hasScript){
+    onload && onload()
     return
   }
   let head = document.querySelector('head');
