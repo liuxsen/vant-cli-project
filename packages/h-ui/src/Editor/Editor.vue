@@ -1,5 +1,5 @@
 <template>
-<div class="ck-editor-box">
+<div class="ck-editor-box" :id="`ck`+id">
   <div :id="id">
   </div>
 </div>
@@ -31,6 +31,7 @@ export default {
   data(){
     return {
       id: 'editor' + getRandomId(),
+      initCount: 0
     }
   },
   computed: {
@@ -45,6 +46,14 @@ export default {
         } else {
         this.editor && this.editor.disableReadOnlyMode('lock-id')
       }
+    },
+    value(val){
+      if(val){
+        if(this.initCount === 0 ){
+          this.initCount = 1
+          this.editor && this.editor.setData(val)
+        }
+      }
     }
   },
   mounted(){
@@ -57,6 +66,7 @@ export default {
   },
   methods: {
     async initEditor(){
+      console.log('init-editor')
       let that = this;
       class MyUploadAdapter {
         constructor( loader ) {
@@ -93,6 +103,7 @@ export default {
 					.create( element, config )
 					.then( editor => {
             this.editor = editor
+            window.editor = editor
             if(this.value){
               editor.setData(this.value)
             }
@@ -105,8 +116,10 @@ export default {
                 }
             } );
             editor.model.document.on('change:data', (e) => {
-              const data = editor.getData();
-              this.$emit('input', data)
+              setTimeout(() => {
+                const data = editor.getData();
+                this.$emit('input', data)
+              }, 20)
             })
             if(this.readonly || this.disabled){
               editor.enableReadOnlyMode('lock-id')

@@ -9,11 +9,20 @@
         <vxe-column
           type="seq" width="60"
         />
-        <vxe-column
-          v-for="(item) in columns" :key="item.prop"
-          :field="item.prop"
-          :title="item.label"
-        />
+        <template v-for="(item) in columns">
+          <vxe-column
+            v-if="item.render"
+            :cell-render="{name: 'render', render: item.render}"
+            :field="item.prop"
+            :title="item.label"
+          >
+          </vxe-column>
+          <vxe-column
+            v-else
+            :field="item.prop"
+            :title="item.label"
+          />
+        </template>
       </vxe-table>
     </div>
     <div style="padding: 10px 0px;text-align: right;">
@@ -36,6 +45,20 @@ import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 import 'element-ui/lib/theme-chalk/index.css'
+VXETable.renderer.add('render', {
+  // 默认显示模板
+  renderDefault (h, renderOpts, params) {
+    const { row, column } = params
+    const { render } = renderOpts
+    params.$index = params.$rowIndex
+    return [render(h, params)]
+  },
+  // 导出模板，例如导出插槽中自定义的内容
+  exportMethod (params) {
+    const { row, column } = params
+    return '自定义内容'
+  }
+})
 Vue.use(VXETable)
 Vue.prototype.$ELEMENT = {
   size: 'small', zIndex: 1000

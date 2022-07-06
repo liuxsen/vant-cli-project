@@ -1,8 +1,12 @@
 <template>
 <div>
-  <Editor :disabled="disabled" v-model="html" :uploadFile="uploadFile"/>
+  <Editor v-if="show" :disabled="disabled" v-model="html" :uploadFile="uploadFile"/>
   <button @click="disabled = !disabled">toggle</button>
-  <div v-html="html"></div>
+  <button @click="show =!show">toggle if</button>
+  <div class="ck-content">
+    <div v-html="html"></div>
+  </div>
+  <input type="text" v-model="html">
 </div>
 </template>
 
@@ -15,7 +19,8 @@ export default {
   data(){
     return {
       disabled: false,
-      html: '<h1>阿斯顿了开发商的了富凯就啊地方</h1><p>adf,adsfasdsadfasdf</p><p>asdf</p><p>asdf</p><p>asdf</p><p>asdf</p><p>asdf</p><p>asd</p><p>fasd</p><p>fa</p><p>sdfasd</p><p>f</p>',
+      show: true,
+      html: '',
       uploadFile: (file) => {
         return new Promise((resolve, reject) => {
           resolve({
@@ -24,6 +29,11 @@ export default {
         })
       }
     }
+  },
+  mounted(){
+    setTimeout(() => {
+      this.html = `<h1>阿斯顿了开发商的了富凯就啊地方</h1><p>adf,adsfasdsadfasdf</p><p>asdf</p><p>asdf</p><p>asdf</p><p>asdf</p><p>asdf</p><p>asd</p><p>fasd</p><p>fa</p><p>sdfasd</p><p>f</p>`
+    }, 2000)
   }
 }
 </script>
