@@ -5,6 +5,9 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import ElementUI from 'element-ui';
+console.log(Vue)
 export default {
   name: 'demo-button',
 
